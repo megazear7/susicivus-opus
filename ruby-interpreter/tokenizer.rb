@@ -18,17 +18,17 @@ class Tokenizer
   # This method will turn the file @file into an array of integers that
   # represent tokens
   def tokenize
-    File.open("my/file/path", "r") do |f|
+    File.open(@file, "r") do |f|
       f.each_char do |char|
         @char = char
         return @tokens if error?
-        case self.state
-        when :finding finding
-        when :lower_case_word lower_case_word
-        when :symbol symbol
-        when :integer integer
-        when :identifier_letters identifier_letters
-        when :identifier_numbers identifier_numbers
+        case @state
+        when :finding then finding
+        when :lower_case_word then lower_case_word
+        when :symbol then symbol
+        when :integer then integer
+        when :identifier_letters then identifier_letters
+        when :identifier_numbers then identifier_numbers
         end
       end
     end
@@ -126,16 +126,16 @@ class Tokenizer
 
   def token_number
     case @state
-    when :lower_case_word 1 
-    when :symbol symbol_number
-    when :integer 31
-    when :identifier_letters 32
-    when :identifier_numbers 32
+    when :lower_case_word then 1 
+    when :symbol then symbol_number
+    when :integer then 31
+    when :identifier_letters then 32
+    when :identifier_numbers then 32
     end  
   end
 
   def add_char
-    @token += char
+    @token += @char
   end
 
   def symbol_char? char = @char
