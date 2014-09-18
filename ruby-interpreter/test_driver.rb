@@ -12,42 +12,23 @@ Dir.glob(test_directory + "*.case") do |file_name|
   answer = []
   File.open(test_directory + test_name + ".answer" , "r") do |f|
     f.each_line do |element|
-      answer << element
+      answer << element.strip
     end
   end
 
-  should_pass = answer[0].chomp == "pass"
-  answer.map! { |e| e.to_i }
-  answer.shift
+  result = tokenizer.tokens.map { |e| e.to_s }
+  result << "Error" if tokenizer.error?
 
-  if should_pass
-    if tokenizer.error?
-      full_pass = false
-      puts test_name + ":\t Error"
-    elsif tokenizer.tokens == answer
-      puts test_name + ":\t Success" 
-    else
-      full_pass = false
-      puts test_name + ":\t Failure"
-    end
+  print test_name + ":\t"
+
+  if result == answer
+    puts "Success" 
   else
-    # some test cases labeled as error cases so that
-    # we know that we error when we are supposed to
-    if tokenizer.error?
-      puts test_name + ":\t Success"
-    else
-      full_pass = false
-      puts test_name + ":\t Failure"
-    end
+    full_pass = false
+    puts "Failure"
   end
 end
 
 puts
-
-if full_pass
-  puts "All tests passed!"
-else
-  puts "Some tests failed or errored"
-end
-
+puts full_pass ? "All tests passed!" : "Some tests failed or errored"
 puts

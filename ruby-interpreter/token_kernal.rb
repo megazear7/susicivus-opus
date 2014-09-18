@@ -51,11 +51,13 @@ class TokenKernal
   private
 
   def tokenize
+    @step = 0
     File.open(@file, "r") do |f|
       f.each_char do |char|
         @char = char
         return if error?
         send @state
+        @step += 1
       end
     end
   end
@@ -69,7 +71,8 @@ class TokenKernal
   end
  
   def transfer_to state
-    @tokens << token_number
+    tok_num = token_number
+    @tokens << tok_num if not error?
     @state = state
     @token = ""
     add_char if not whitespace?
@@ -134,6 +137,7 @@ class TokenKernal
   end
 
   def symbol_number
+    @status = :error if not symbols.has_key? @token
     symbols[@token]
   end
 
