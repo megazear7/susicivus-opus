@@ -3,6 +3,7 @@ class TokenKernal
   attr_reader :file
   attr_reader :status
   attr_reader :current_pos
+  attr_reader :error_message
 
   def initialize file
     # this is the name of the file we will be tokenizing
@@ -51,13 +52,17 @@ class TokenKernal
   private
 
   def tokenize
-    @step = 0
     File.open(@file, "r") do |f|
-      f.each_char do |char|
-        @char = char
-        return if error?
-        send @state
-        @step += 1
+      @line_num = 0
+      f.each_line do |line|
+        @char_num = 0
+        line.each_char do |char|
+          @char = char
+          return if error?
+          send @state
+          @char_num += 1
+        end
+        @line_num += 1
       end
     end
   end
@@ -160,5 +165,7 @@ class TokenKernal
 
   def throw_error
     @status = :error
+    @error_message = "Failed at line #{@line_num + 1}, at character number #{@char_num + 1} while "
+    @error_message += @state == :finding ? "on white space" : "on a #{@state}"
   end
-end
+end 

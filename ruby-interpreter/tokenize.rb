@@ -6,4 +6,4 @@ tokenizer.each do |token|
   puts token
 end
 
-puts "Error" if tokenizer.error?
+puts "Error: " + tokenizer.error_message if tokenizer.error?

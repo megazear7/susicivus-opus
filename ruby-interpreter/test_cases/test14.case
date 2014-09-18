@@ -1,0 +1,6 @@
+if bob == bob
+  dostuff
+else
+  %
+  oopse
+end
