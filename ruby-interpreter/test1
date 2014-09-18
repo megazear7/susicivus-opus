@@ -1,2 +1,2 @@
-if;BOB BOB123 == 45;
+if;BOB hello||BOB123 === 45;
 
