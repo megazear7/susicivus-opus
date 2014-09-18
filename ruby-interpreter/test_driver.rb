@@ -21,13 +21,13 @@ Dir.glob(test_directory + "*.case") do |file_name|
   result << "Error" if tokenizer.error?
 
   if result == answer
-    puts green(".")
+    puts Color.green(".")
   else
     full_pass = false
-    puts red(test_name)
+    puts Color.red(test_name)
   end
 end
 
 puts
-puts full_pass ? blue("All tests passed!") : yellow("Some tests failed")
+puts full_pass ? Color.blue("All tests passed!") : Color.yellow("Some tests failed")
 puts

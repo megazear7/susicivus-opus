@@ -143,7 +143,7 @@ class TokenKernal
   end
 
   def symbol_number
-    @status = :error if not symbols.has_key? @token
+    throw_error if not symbols.has_key? @token
     symbols[@token]
   end
 
