@@ -90,6 +90,7 @@ class TokenKernal
     elsif whitespace?
       transfer_to :finding
     else
+      transfer_to :finding
       throw_error
     end
   end
