@@ -27,3 +27,10 @@ combined with these methods give the functionality of the finite state machine.
 Then some methods were created that lets you either change state and add @token
 to @tokens, or add @char to @token and continue processing. The two main helper
 methods in this are is transfer_to and switch_to.
+
+I tested the tokenizer with a test_driver.rb file that would go through every
+*.case file in the ./test_cases directory and then match the tokenizers output
+to the coorosponding *.answer file in the ./test_cases directory. The first line
+of the answer file is either pass or error. Which tells the test driver whether
+the given input is supposed to succeed or error. The remaining lines give
+the expected output.
