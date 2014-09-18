@@ -1,4 +1,5 @@
 require "./tokenizer"
+require "./colors"
 
 test_directory = "./test_cases/"
 
@@ -19,16 +20,14 @@ Dir.glob(test_directory + "*.case") do |file_name|
   result = tokenizer.tokens.map { |e| e.to_s }
   result << "Error" if tokenizer.error?
 
-  print test_name + ":\t"
-
   if result == answer
-    puts "Success" 
+    puts green(".")
   else
     full_pass = false
-    puts "Failure"
+    puts red(test_name)
   end
 end
 
 puts
-puts full_pass ? "All tests passed!" : "Some tests failed or errored"
+puts full_pass ? blue("All tests passed!") : yellow("Some tests failed")
 puts
