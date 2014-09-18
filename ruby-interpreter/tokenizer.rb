@@ -77,7 +77,7 @@ class Tokenizer
     elsif digit?
       switch_to :integer
     elsif upper? 
-      switch_to :identifier
+      switch_to :identifier_letters
     elsif whitespace?
       # do nothing
     else
@@ -131,7 +131,8 @@ class Tokenizer
       add_char
     elsif symbol_char?
       transfer_to :symbol
-    elsif space?
+      add_char
+    elsif whitespace?
       transfer_to :finding
     else
       throw_error
@@ -145,7 +146,8 @@ class Tokenizer
       switch_to :identifier_numbers
     elsif symbol_char?
       transfer_to :symbol
-    elsif space?
+      add_char
+    elsif whitespace?
       transfer_to :finding
     else
       throw_error
@@ -157,7 +159,8 @@ class Tokenizer
       add_char
     elsif symbol_char?
       transfer_to :symbol
-    elsif space?
+      add_char
+    elsif whitespace?
       transfer_to :finding
     else
       throw_error
