@@ -101,6 +101,13 @@ class TokenKernal
     end  
   end
 
+  def symbols
+    { ";"  => 12,
+      "="  => 14,
+      "||" => 19,
+      "==" => 26  }
+  end
+
   def add_char
     @token += @char
   end
@@ -128,13 +135,6 @@ class TokenKernal
 
   def symbol_number
     symbols[@token]
-  end
-
-  def symbols
-    { ";"  => 12,
-      "="  => 14,
-      "||" => 19,
-      "==" => 26  }
   end
 
   def upper? char = @char
