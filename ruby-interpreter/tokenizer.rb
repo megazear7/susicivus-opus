@@ -56,7 +56,6 @@ class Tokenizer
       f.each_char do |char|
         @char = char
         return @tokens if error?
-        puts @step.to_s + "-" + @char
         case @state
         when :finding then finding
         when :lower_case_word then lower_case_word
@@ -100,9 +99,7 @@ class Tokenizer
   end
 
   def symbol char = @char
-    puts "(" + @token + char + ")" if @step == 26
-    puts 
-    if symbol? @token and not symbol? @token + char
+    if symbol_prefix? @token and not symbol? @token + char
       if lower?
         transfer_to :lower_case_word
         add_char
@@ -120,12 +117,11 @@ class Tokenizer
       else
         throw_error
       end
-    elsif symbol? @token and symbol? @token + char
+    elsif symbol_prefix? @token and symbol_prefix? @token + char
       add_char
     elsif whitespace?
       transfer_to :finding
     else
-      puts "." if @step == 26
       throw_error
     end
   end
@@ -200,6 +196,10 @@ class Tokenizer
   def symbol_chars
     # this will return an array of every character that appears in symbols
     symbol_list.join("").squeeze.split("")
+  end
+
+  def symbol_prefix? symbol = @token
+    symbol_list.any? { |e| e.start_with? symbol }
   end
 
   def symbol? symbol = @token
