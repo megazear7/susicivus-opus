@@ -90,7 +90,6 @@ class Tokenizer
       add_char
     elsif symbol_char?
       transfer_to :symbol
-      add_char
     elsif whitespace?
       transfer_to :finding
     else
@@ -102,16 +101,12 @@ class Tokenizer
     if symbol_prefix? @token and not symbol? @token + char
       if lower?
         transfer_to :lower_case_word
-        add_char
       elsif symbol_char?
         transfer_to :symbol
-        add_char
       elsif digit?
         transfer_to :integer
-        add_char
       elsif upper? 
-        transfer_to :identifier
-        add_char
+        transfer_to :identifier_letters
       elsif whitespace?
         transfer_to :finding
       else
@@ -131,7 +126,6 @@ class Tokenizer
       add_char
     elsif symbol_char?
       transfer_to :symbol
-      add_char
     elsif whitespace?
       transfer_to :finding
     else
@@ -146,7 +140,6 @@ class Tokenizer
       switch_to :identifier_numbers
     elsif symbol_char?
       transfer_to :symbol
-      add_char
     elsif whitespace?
       transfer_to :finding
     else
@@ -159,7 +152,6 @@ class Tokenizer
       add_char
     elsif symbol_char?
       transfer_to :symbol
-      add_char
     elsif whitespace?
       transfer_to :finding
     else
@@ -176,6 +168,7 @@ class Tokenizer
     @tokens << token_number
     @state = state
     @token = ""
+    add_char if not whitespace?
   end
 
   def token_number
