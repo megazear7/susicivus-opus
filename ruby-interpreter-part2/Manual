@@ -10,7 +10,6 @@ machine. Specifically, the symbols are all considered one state, the machine
 will greedily select as large a symbol as possible, then reference a table
 to find the symbols exact number.
 
-
 You will notice a lot of one line methods. These methods hide a suprising amount
 of complexity. They give nice descriptive names so that the Tokenizer rarely
 has to do much deep logic, and instead can just be read almost like english.
