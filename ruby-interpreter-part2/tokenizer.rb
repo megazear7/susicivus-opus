@@ -5,7 +5,7 @@ class Tokenizer < TokenKernal
   # You start in the :finding state
   def finding char = @char
     if lower?
-      switch_to :lower_case_word
+      switch_to :reserved_word
     elsif symbol_char?
       switch_to :symbol
     elsif digit?
@@ -19,7 +19,7 @@ class Tokenizer < TokenKernal
     end
   end
 
-  def lower_case_word char = @char
+  def reserved_word char = @char
     if lower?
       add_char
     elsif symbol_char?

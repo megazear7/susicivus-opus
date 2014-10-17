@@ -7,4 +7,4 @@ tokenizer.each do |token|
   puts token
 end
 
-puts Color.red("Error") + ": " + tokenizer.error_message if tokenizer.error?
+puts Color.red("Error") + ": " + tokenizer.error_message 

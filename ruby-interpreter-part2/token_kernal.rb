@@ -65,6 +65,9 @@ class TokenKernal
         @line_num += 1
       end
     end
+
+    # for the sake of consistency add the EOF token
+    @tokens << 33
   end
 
   def finding char = @char
@@ -85,7 +88,7 @@ class TokenKernal
 
   def transfer_on_char
     if lower?
-      transfer_to :lower_case_word
+      transfer_to :reserved_word
     elsif symbol_char?
       transfer_to :symbol
     elsif digit?
@@ -102,7 +105,7 @@ class TokenKernal
 
   def token_number
     case @state
-    when :lower_case_word then 1
+    when :reserved_word then reserved_word_number
     when :symbol then symbol_number
     when :integer then 31
     when :identifier_letters then 32
@@ -110,11 +113,40 @@ class TokenKernal
     end  
   end
 
+  def reserved_words
+    { "program" => 1,
+      "begin"   => 2,
+      "end"     => 3,
+      "int"     => 4,
+      "if"      => 5,
+      "then"    => 6,
+      "else"    => 7,
+      "while"   => 8,
+      "loop"    => 9,
+      "read"    => 10,
+      "write"   => 11 }
+  end
+
   def symbols
     { ";"  => 12,
+      ","  => 13,
       "="  => 14,
+      "!"  => 15,
+      "["  => 16,
+      "]"  => 17,
+      "&&" => 18,
       "||" => 19,
-      "==" => 26  }
+      "("  => 20,
+      ")"  => 21,
+      "+"  => 22,
+      "-"  => 23,
+      "*"  => 24,
+      "!=" => 25,
+      "==" => 26,
+      "<"  => 27,
+      ">"  => 28,
+      "<=" => 29,
+      ">=" => 30 }
   end
 
   def add_char
@@ -140,6 +172,11 @@ class TokenKernal
 
   def symbol_list
     symbols.keys
+  end
+
+  def reserved_word_number
+    throw_error if not reserved_words.has_key? @token
+    reserved_words[@token]
   end
 
   def symbol_number

@@ -1,2 +1,3 @@
-if;BOB hello||BOB123 === 45;
-
+program
+ int X ; 
+ begin X = 25 ; write X ; end
