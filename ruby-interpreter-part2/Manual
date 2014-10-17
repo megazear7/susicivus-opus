@@ -1,0 +1,45 @@
+Class Overview -----------------------------------------------------------------
+The TokenKernal implements all the logic needed to do the finite state machine
+switching, the logic to start the finite state machine and the logic
+needed for test cases and the like. In this way the Tokenizer could just
+implement a number of states that are needed for the functionality of our
+tokenizer and also how those states switch between one another.
+
+Some shortcuts were made to simplify the implementation of the finite state
+machine. Specifically, the symbols are all considered one state, the machine
+will greedily select as large a symbol as possible, then reference a table
+to find the symbols exact number.
+
+
+You will notice a lot of one line methods. These methods hide a suprising amount
+of complexity. They give nice descriptive names so that the Tokenizer rarely
+has to do much deep logic, and instead can just be read almost like english.
+
+You will also notice quite a bit of Class level variables and optional
+paramaters. This is to allow the Tokenizer to be expanded and allows methods
+to be used either in some default manner (usually referencing a class variable)
+or to be used in a more specific manner. Many of the methods will assume the
+@char or @token variable is the paramater if no other paramater is passed in.
+This allows clean code higher up the method calls, yielding increased
+readability.
+
+Implementation Method ----------------------------------------------------------
+The main idea was to loop over every character in the given file, and call a 
+certain method coorosponding to the @state variable. The @state variable 
+combined with these methods give the functionality of the finite state machine.
+Then some methods were created that lets you either change state and add @token
+to @tokens, or add @char to @token and continue processing. The two main helper
+methods in this are is transfer_to and switch_to.
+
+Test Method --------------------------------------------------------------------
+I tested the tokenizer with a test_driver.rb file that would go through every
+*.case file in the ./test_cases directory and then match the tokenizers output
+to the coorosponding *.answer file in the ./test_cases directory. The first line
+of the answer file is either pass or error. Which tells the test driver whether
+the given input is supposed to succeed or error. The remaining lines give
+the expected output.
+
+Colors -------------------------------------------------------------------------
+The test driver outputs green dots for passing tests and red test names for
+failing tests. The tokenize script will output a red "Error" if there was
+an error along with some helpful error information.
