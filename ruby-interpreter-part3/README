@@ -1,0 +1,13 @@
+Run this on stdlinux
+
+To input a certain file and see the output of the tokenizer run:
+ruby tokenize.rb file_name_containing_core_code
+
+To run all the test cases listed in ./test_cases run:
+ruby test_driver.rb
+
+To add test cases add a file under ./test_cases. One file needs 
+to be the core code and the file extension should be .case
+A coorosponding file of the same name but with the extension .answer instead
+After adding the test case you can run the test driver and your new test
+case will be added to the list of tests that were run.
