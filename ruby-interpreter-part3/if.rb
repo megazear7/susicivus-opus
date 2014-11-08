@@ -8,19 +8,19 @@ class If
   attr_accessor :stmt_seq2
 
   def initialize tokens
-    tokens.skip # if
+    tokens.skip "if"
     @cond = Cond.new(tokens)
-    tokens.skip # then
+    tokens.skip "then"
     @stmt_seq1 = StmtSeq.new(tokens)
 
     if tokens.current_token_string == "end"
-      tokens.skip # end
+      tokens.skip "end"
     else
-      tokens.skip # else
+      tokens.skip "else"
       @stmt_seq2 = StmtSeq.new(tokens)
-      tokens.skip # end
+      tokens.skip "end"
     end
-    tokens.skip # ;
+    tokens.skip ";"
   end
 
   def print_out

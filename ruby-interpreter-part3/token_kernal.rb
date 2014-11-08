@@ -51,7 +51,8 @@ class TokenKernal
     @token_strings[@current_pos]
   end
 
-  def skip
+  def skip expected
+    puts "WARNING! expected #{@token_strings[@current_pos]} to equal #{expected}" if expected and @token_strings[@current_pos] != expected
     @current_pos += 1
     @tokens[@current_pos - 1]
   end

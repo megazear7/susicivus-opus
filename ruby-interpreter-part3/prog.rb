@@ -7,11 +7,11 @@ class Prog
   attr_accessor :stmt_seq
 
   def initialize tokens
-    tokens.skip # program
+    tokens.skip "program"
     @decl_seq = DeclSeq.new(tokens)
-    tokens.skip # begin
+    tokens.skip "begin"
     @stmt_seq = StmtSeq.new(tokens)
-    tokens.skip # end
+    tokens.skip "end"
   end
 
   def print_out

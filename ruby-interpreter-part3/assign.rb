@@ -6,9 +6,9 @@ class Assign
 
   def initialize tokens
     @id = Id.new(tokens)
-    tokens.skip # =
+    tokens.skip "="
     @exp = Exp.new(tokens)
-    tokens.skip # ;
+    tokens.skip ";"
   end
 
   def print_out

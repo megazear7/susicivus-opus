@@ -8,19 +8,19 @@ class Comp
   attr_accessor :comp_op
 
   def initialize tokens
-    tokens.skip # (
+    tokens.skip "("
     @op1 = Op.new(tokens)
     @comp_op = CompOp.new(tokens)
     @op2 = Op.new(tokens)
-    tokens.skip # )
+    tokens.skip ")"
   end
 
   def print_out 
-    print "("
+    print " ( "
     @op1.print_out
     @comp_op.print_out
     @op2.print_out
-    print ")"
+    print " ) "
   end
 
 end

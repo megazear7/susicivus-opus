@@ -5,9 +5,9 @@ class Decl
   attr_accessor :id_list
 
   def initialize tokens
-    tokens.skip # int
+    tokens.skip "int"
     @id_list = IdList.new(tokens)
-    tokens.skip # ;
+    tokens.skip ";"
   end
 
   def print_out

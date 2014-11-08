@@ -16,7 +16,7 @@ class Cond
       @cond = Cond.new(tokens)
     elsif tokens.current_token_string == "["
       @false = false
-      tokens.skip # [
+      tokens.skip "["
       @cond1 = Cond.new(tokens)
       if    tokens.current_token_string == "&&"
         @or  = false
@@ -26,7 +26,7 @@ class Cond
         @and = false
       end
       @cond2 = Cond.new(tokens)
-      tokens.skip # ]
+      tokens.skip "]"
     else
       @comp = Comp.new(tokens)
     end
@@ -37,11 +37,12 @@ class Cond
       print "!"
       @cond.print_out
     elsif @cond2
-      print "["
+      print " [ "
       @cond1.print_out
       print " && " if @and
       print " || " if @or
       @cond2.print_out
+      print " ] "
     else
       @comp.print_out
     end

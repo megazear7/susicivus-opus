@@ -8,7 +8,7 @@ class IdList
   def initialize tokens
     @id = Id.new(tokens)
     if tokens.current_token_string == ","
-      tokens.skip # ,
+      tokens.skip ","
       @id_list = IdList.new(tokens)
     end
   end

@@ -10,9 +10,9 @@ class Op
 
   def initialize tokens
     if tokens.current_token_string == "("
-      tokens.skip # (
+      tokens.skip "("
       @exp = Exp.new(tokens)
-      tokens.skip # )
+      tokens.skip ")"
     else
       if    digit? tokens.current_token_string[0]
         @no = No.new(tokens)

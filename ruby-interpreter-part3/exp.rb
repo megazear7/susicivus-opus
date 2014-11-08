@@ -12,12 +12,12 @@ class Exp
     if    tokens.current_token_string == "+"
       @add = true
       @sub = false
-      tokens.skip # +
+      tokens.skip "+"
       @exp = Exp.new(tokens)
     elsif tokens.current_token_string == "-"
       @add = false
       @sub = true
-      tokens.skip # -
+      tokens.skip "-"
       @exp = Exp.new(tokens)
     end
   end

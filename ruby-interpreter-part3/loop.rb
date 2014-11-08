@@ -7,12 +7,12 @@ class Loop
   attr_accessor :stmt_seq
 
   def initialize tokens
-    tokens.skip # while
+    tokens.skip "while"
     @cond = Cond.new(tokens)
-    tokens.skip # loop
+    tokens.skip "loop"
     @stmt_seq = StmtSeq.new(tokens)
-    tokens.skip # end
-    tokens.skip # ;
+    tokens.skip "end"
+    tokens.skip ";"
   end
 
   def print_out

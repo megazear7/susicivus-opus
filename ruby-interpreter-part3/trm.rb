@@ -8,7 +8,7 @@ class Trm
   def initialize tokens
     @op = Op.new(tokens)
     if tokens.current_token_string == "*"
-      tokens.skip # *
+      tokens.skip "*"
       @trm = Trm.new(tokens)
     else
     end
