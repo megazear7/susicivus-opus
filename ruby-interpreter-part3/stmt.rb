@@ -1,4 +1,5 @@
 require "./if.rb"
+require "./prog.rb"
 require "./loop.rb"
 require "./in.rb"
 require "./out.rb"
@@ -26,17 +27,31 @@ class Stmt
     end
   end
 
-  def print_out
+  def execute variables
     if    @if
-      @if.print_out
+      @if.execute variables
     elsif @loop
-      @loop.print_out
+      @loop.execute variables
     elsif @in
-      @in.print_out
+      @in.execute variables
     elsif @out
-      @out.print_out
+      @out.execute variables
     elsif @assign
-      @assign.print_out
+      @assign.execute variables
+    end
+  end
+
+  def print_out spaces
+    if    @if
+      @if.print_out spaces
+    elsif @loop
+      @loop.print_out spaces
+    elsif @in
+      @in.print_out spaces
+    elsif @out
+      @out.print_out spaces
+    elsif @assign
+      @assign.print_out spaces
     end
   end
 

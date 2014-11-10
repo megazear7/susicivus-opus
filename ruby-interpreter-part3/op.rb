@@ -22,6 +22,16 @@ class Op
     end
   end
 
+  def value variables
+    if @exp
+      @exp.value variables
+    elsif @no
+      @no.value
+    elsif @id
+      variables[@id.value]
+    end
+  end
+
   def print_out
     if @exp
       print "("

@@ -5,4 +5,6 @@ tokenizer = Tokenizer.new(ARGV[0])
 
 prog = Prog.new(tokenizer)
 
-prog.print_out
+prog.print_out 0
+
+prog.execute

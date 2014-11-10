@@ -1,33 +1,23 @@
 require "./tokenizer"
 require "./colors"
 
-test_directory = "./test_cases/"
+tests = "./test_cases/"
 
 puts
 full_pass = true
 
-Dir.glob(test_directory + "*.case") do |file_name|
+Dir.glob(tests + "*.core") do |file_name|
+
   test_name = file_name[13..-6]
-  tokenizer = Tokenizer.new(test_directory + test_name + ".case")
 
-  answer = []
-  File.open(test_directory + test_name + ".answer" , "r") do |f|
-    f.each_line do |element|
-      answer << element.strip
-    end
-  end
+  input = tests + test_name + ".core"
+  answer = tests + test_name + ".answer"
+  actual = tests + test_name + ".actual"
 
-  result = tokenizer.tokens.map { |e| e.to_s }
-  result << "Error" if tokenizer.error?
+  puts Color.blue(test_name + ":")
+  system "ruby interpreter.rb #{input} > #{actual}"
+  system "diff #{answer} #{actual}"
+  puts Color.blue("------------------------")
+  puts ""
 
-  if result == answer
-    puts Color.green(".")
-  else
-    full_pass = false
-    puts Color.red(test_name)
-  end
 end
-
-puts
-puts full_pass ? Color.blue("All tests passed!") : Color.yellow("Some tests failed")
-puts

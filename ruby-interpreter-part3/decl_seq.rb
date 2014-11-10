@@ -1,4 +1,5 @@
 require "./decl.rb"
+require "./prog.rb"
 
 class DeclSeq
 
@@ -12,11 +13,15 @@ class DeclSeq
     end
   end
 
-  def print_out
-    @decl.print_out
+  def print_out spaces
+    @decl.print_out spaces
     if @decl_seq
-      @decl_seq.print_out
+      @decl_seq.print_out spaces
     end
+  end
+
+  def declared_list
+    Decl.declared_list
   end
 
 end

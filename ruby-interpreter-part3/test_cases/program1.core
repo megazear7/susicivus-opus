@@ -1,5 +1,5 @@
 program int X , Y , XY ;
- 
+
           begin read X ; Y  = 0 ;
  
                 while ( X > 0 ) loop

@@ -14,6 +14,14 @@ class Trm
     end
   end
 
+  def value variables
+    if @trm
+      (@op.value variables) * (@trm.value variables)
+    else
+      @op.value variables
+    end
+  end
+
   def print_out
     @op.print_out
     if @trm

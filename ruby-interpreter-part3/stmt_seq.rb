@@ -1,4 +1,5 @@
 require "./stmt.rb"
+require "./prog.rb"
 
 class StmtSeq
 
@@ -12,9 +13,14 @@ class StmtSeq
     end
   end
 
-  def print_out
-    @stmt.print_out
-    @stmt_seq.print_out if @stmt_seq
+  def execute variables
+    @stmt.execute variables
+    @stmt_seq.execute variables if @stmt_seq
+  end
+
+  def print_out spaces
+    @stmt.print_out spaces
+    @stmt_seq.print_out spaces if @stmt_seq
   end
 
 end

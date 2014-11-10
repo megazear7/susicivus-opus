@@ -1,4 +1,5 @@
 require "./id.rb"
+require "./prog.rb"
 
 class IdList
 
@@ -18,6 +19,14 @@ class IdList
     if @id_list
       print ", "
       @id_list.print_out
+    end
+  end
+
+  def ids
+    if @id_list
+      @id_list.ids << @id.value
+    else
+      [@id.value]
     end
   end
 

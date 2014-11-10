@@ -15,12 +15,29 @@ class Comp
     tokens.skip ")"
   end
 
+  def value variables
+    case @comp_op.type
+    when "!="
+      (@op1.value variables) != (@op2.value variables)
+    when "=="
+      (@op1.value variables) == (@op2.value variables)
+    when "<"
+      (@op1.value variables) < (@op2.value variables)
+    when ">"
+      (@op1.value variables) > (@op2.value variables)
+    when "<="
+      (@op1.value variables) <= (@op2.value variables)
+    when ">="
+      (@op1.value variables) >= (@op2.value variables)
+    end
+  end
+
   def print_out 
-    print " ( "
+    print " ("
     @op1.print_out
     @comp_op.print_out
     @op2.print_out
-    print " ) "
+    print ") "
   end
 
 end

@@ -1,4 +1,5 @@
 require "./id_list.rb"
+require "./prog.rb"
 
 class In
 
@@ -10,8 +11,14 @@ class In
     tokens.skip ";"
   end
 
-  def print_out 
-    print "read "
+  def execute variables
+    @id_list.ids.each do |id|
+      variables[id] = STDIN.gets.chomp.to_i
+    end
+  end
+
+  def print_out spaces
+    Prog.indent spaces, "read "
     @id_list.print_out
     puts ";"
   end

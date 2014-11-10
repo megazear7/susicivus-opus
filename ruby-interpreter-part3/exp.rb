@@ -22,6 +22,16 @@ class Exp
     end
   end
 
+  def value variables
+    if @add
+      (@trm.value variables) + (@exp.value variables)
+    elsif @sub
+      (@trm.value variables) - (@exp.value variables)
+    else
+      @trm.value variables
+    end   
+  end
+
   def print_out
     @trm.print_out
     if @add

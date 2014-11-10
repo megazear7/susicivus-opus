@@ -1,4 +1,5 @@
 require "./cond.rb"
+require "./prog.rb"
 require "./stmt_seq.rb"
 
 class If
@@ -23,19 +24,26 @@ class If
     tokens.skip ";"
   end
 
-  def print_out
-    print "if "
+  def execute variables
+    if cond.value variables
+      @stmt_seq1.execute variables
+    else
+      @stmt_seq2.execute variables
+    end
+  end
+
+  def print_out spaces
+    Prog.indent spaces, "if"
     @cond.print_out
     puts "then"
-    @stmt_seq1.print_out
+    @stmt_seq1.print_out spaces + 2
     if not stmt_seq2
-      print "end" 
+      Prog.indentLn spaces, "end;" 
     else
-      puts "else"
-      stmt_seq2.print_out
-      print "end"
+      Prog.indentLn spaces, "else"
+      @stmt_seq2.print_out spaces + 2
+      Prog.indentLn spaces, "end;"
     end
-    puts ";"
   end
 
 end

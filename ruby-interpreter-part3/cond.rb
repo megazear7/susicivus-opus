@@ -32,6 +32,20 @@ class Cond
     end
   end
 
+  def value variables
+    if @false
+      not @cond.value variables
+    elsif @cond2
+      if @and
+        @cond1.value variables and @cond2.value variables 
+      elsif @or
+        @cond1.value variables or @cond2.value variables 
+      end
+    else
+      @comp.value variables
+    end
+  end
+
   def print_out
     if @false
       print "!"

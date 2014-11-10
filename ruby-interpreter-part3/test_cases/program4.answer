@@ -1,0 +1,5 @@
+program
+  int X;
+begin
+  X = 0;
+end
