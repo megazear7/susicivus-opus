@@ -1,13 +1,45 @@
+assign.rb       : Represents: assign                  - After Parsed: calling print will do as expected
+comp.rb         : Represents: comparison              - After Parsed: calling print will do as expected and calling value will return the value of the comparison
+comp_op.rb      : Represents: comparison operator     - After Parsed: calling print will do as expected and calling type will give you the type of the operator
+cond.rb         : Represents: condition               - After Parsed: calling print will do as expected and calling value will return the value of the condition
+decl.rb         : Represents: declaration             - After Parsed: calling print will do as expected
+decl_seq.rb     : Represents: declaration sequence    - After Parsed: calling print will do as expected
+exp.rb          : Represents: expression              - After Parsed: calling print will do as expected and calling value will give you the value of the expression
+id.rb           : Represents: identifier              - After Parsed: calling print will do as expected and calling value will give you the value of the identifier
+id_list.rb      : Represents: identifier list         - After Parsed: calling print will do as expected and ids will give you the list of all the ids in this list
+if.rb           : Represents: if statement            - After Parsed: calling print will do as expected and calling execute on this will run as expected
+in.rb           : Represents: input statement         - After Parsed: calling print will do as expected and calling execute on this will run as expected
+loop.rb         : Represents: while loop              - After Parsed: calling print will do as expected and execute on this will run as expected
+no.rb           : Represents: number                  - After Parsed: calling print will do as expected and calling value on this will return the value of the number
+op.rb           : Represents: operator                - After Parsed: calling print will do as expected and calling value on this will return the value of the operator
+out.rb          : Represents: output statement        - After Parsed: calling print will do as expected and calling execute on this will run as expected
+prog.rb         : Represents: full program            - After Parsed: calling print will do as expected and calling execute on this will run as expected
+stmt.rb         : Represents: generic statement       - After Parsed: calling print will do as expected and calling execute on this will run as expected
+stmt_seq.rb     : Represents: statement sequence      - After Parsed: calling print will do as expected and calling execute on this will run as expected
+trm.rb          : Represents: term                    - After Parsed: calling print will do as expected and calling value on this will return the value of this term
+interpreter.rb  : Represents: the interpreter         - When passed the correct command line arguments it will iterpret a core program
+test_driver.rb  : Represents: the test driver         - A test driver to automattically run core programs and do a diff with there expected results
+token_kernal.rb : Represents: the tokenizer kernel    - Provides kernel functionality to tokenizer.rb
+tokenize.rb     : Represents: the tokenize script     - The old tokenize.rb script for lab 1 and 2
+tokenizer.rb    : Represents: the tokenizer           - The tokenizer that the parser used to tokenize the input program
+
+Files under test_cases/ are described below
+
 Run this on stdlinux
 
 To input a certain file and see the output of the tokenizer run:
-ruby tokenize.rb file_name_containing_core_code
+ruby interpreter.rb file_name_containing_core_code file_name_containing_core_data
 
 To run all the test cases listed in ./test_cases run:
 ruby test_driver.rb
 
-To add test cases add a file under ./test_cases. One file needs 
-to be the core code and the file extension should be .case
-A coorosponding file of the same name but with the extension .answer instead
-After adding the test case you can run the test driver and your new test
-case will be added to the list of tests that were run.
+This will output blue text if all the tests pass. Any white text displayed is a 
+diff between the expected and actual results.
+
+To add test cases add files under ./test_cases. You need the following file types.
+my_test.core   : The core program to be executed
+my_test.answer : The expected output (including the pretty calling print will do as expected and core output)
+my_test.actual : The actual output (including the pretty calling print will do as expected and core output)
+my_test.data   : The data for the core program in my_test.core
+
+
