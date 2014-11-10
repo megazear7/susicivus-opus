@@ -14,3 +14,4 @@ begin
   end;
   write X2;
 end
+X2 = 8

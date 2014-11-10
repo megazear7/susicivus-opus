@@ -24,11 +24,11 @@ class If
     tokens.skip ";"
   end
 
-  def execute variables
+  def execute variables, prog
     if cond.value variables
-      @stmt_seq1.execute variables
+      @stmt_seq1.execute variables, prog
     else
-      @stmt_seq2.execute variables
+      @stmt_seq2.execute variables, prog
     end
   end
 

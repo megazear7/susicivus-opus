@@ -13,9 +13,9 @@ class StmtSeq
     end
   end
 
-  def execute variables
-    @stmt.execute variables
-    @stmt_seq.execute variables if @stmt_seq
+  def execute variables, prog
+    @stmt.execute variables, prog
+    @stmt_seq.execute variables, prog if @stmt_seq
   end
 
   def print_out spaces

@@ -27,13 +27,13 @@ class Stmt
     end
   end
 
-  def execute variables
+  def execute variables, prog
     if    @if
-      @if.execute variables
+      @if.execute variables, prog
     elsif @loop
-      @loop.execute variables
+      @loop.execute variables, prog
     elsif @in
-      @in.execute variables
+      @in.execute variables, prog
     elsif @out
       @out.execute variables
     elsif @assign

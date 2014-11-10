@@ -11,11 +11,12 @@ Dir.glob(tests + "*.core") do |file_name|
   test_name = file_name[13..-6]
 
   input = tests + test_name + ".core"
+  data = tests + test_name + ".data"
   answer = tests + test_name + ".answer"
   actual = tests + test_name + ".actual"
 
   puts Color.blue(test_name + ":")
-  system "ruby interpreter.rb #{input} > #{actual}"
+  system "ruby interpreter.rb #{input} #{data} > #{actual}"
   system "diff #{answer} #{actual}"
   puts Color.blue("------------------------")
   puts ""

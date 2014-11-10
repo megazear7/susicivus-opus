@@ -7,7 +7,9 @@ class Prog
   attr_accessor :stmt_seq
   attr_accessor :variables
 
-  def initialize tokens
+  def initialize tokens, input_data_file 
+    @currentInput = 0
+    @inputData = init_input_data input_data_file
     tokens.skip "program"
 
     @decl_seq = DeclSeq.new(tokens)
@@ -24,6 +26,15 @@ class Prog
     tokens.skip "end"
   end
 
+  def init_input_data input_data_file
+    File.open(input_data_file, "r").read.split(" ").map { |x| x.to_i }
+  end
+
+  def next_input
+    @currentInput += 1
+    @inputData[@currentInput - 1]
+  end
+
   def print_out spaces
     Prog.indentLn spaces, "program"
     @decl_seq.print_out spaces + 2
@@ -33,7 +44,7 @@ class Prog
   end
 
   def execute
-    @stmt_seq.execute @variables
+    @stmt_seq.execute @variables, self
   end
 
   def self.indentLn spaces, str

@@ -11,3 +11,9 @@ begin
   end;
   write Y;
 end
+XY = 7
+XY = -4
+XY = 10
+XY = 5
+XY = -9
+Y = 9

@@ -11,9 +11,9 @@ class In
     tokens.skip ";"
   end
 
-  def execute variables
+  def execute variables, prog
     @id_list.ids.each do |id|
-      variables[id] = STDIN.gets.chomp.to_i
+      variables[id] = prog.next_input
     end
   end
 

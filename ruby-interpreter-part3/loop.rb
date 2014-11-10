@@ -16,9 +16,9 @@ class Loop
     tokens.skip ";"
   end
 
-  def execute variables
+  def execute variables, prog
     while cond.value variables
-      @stmt_seq.execute variables 
+      @stmt_seq.execute variables, prog
     end
   end
 

@@ -12,3 +12,4 @@ begin
   end;
   write D;
 end
+D = 9
