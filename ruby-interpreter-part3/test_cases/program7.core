@@ -1,0 +1,9 @@
+program int X1, X2;
+
+begin X1 = 0; X2 = 50;
+
+while [!(X1 < 20) && ![(X1 >= 35) || (25 < X2)]] loop
+
+X1 = X1* X2; X2 = 5*(X1+3-4);
+
+end; end

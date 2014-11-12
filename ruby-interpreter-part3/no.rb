@@ -6,7 +6,8 @@ class No
     @value = tokens.current_token_string.to_i
     tokens.skip false
     if not numeric? @value
-      puts "WARNING! expected numeric value but got #{@value}"
+      puts "ERROR! expected numeric value but got #{@value}"
+      exit
     end
   end
 

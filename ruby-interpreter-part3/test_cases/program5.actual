@@ -1,0 +1,14 @@
+program
+  int X, Y, Z, I;
+begin
+  read X, Y;
+  Z = X + Y;
+  while [ (Z > 0) && (Z < 5) ] loop
+    write Z;
+    Z = Z - 1;
+  end;
+end
+Z = 4
+Z = 3
+Z = 2
+Z = 1

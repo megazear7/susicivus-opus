@@ -1,0 +1,28 @@
+program
+int PRIME;
+int INDEX, MAX;
+int INDEX2;
+int TEMP;
+int C;
+begin
+read MAX;
+INDEX = 2;
+while (INDEX<MAX) loop
+C = 1;
+INDEX2 = INDEX - 1;
+while [(INDEX2>1)&&(C==1)] loop
+PRIME = INDEX;
+while (PRIME>0) loop
+PRIME = PRIME - INDEX2;
+end;
+if (PRIME==0) then
+C = 0;
+end;
+INDEX2 = INDEX2 - 1;
+end;
+if (C==1) then
+write INDEX;
+end;
+INDEX = INDEX + 1;
+end;
+end

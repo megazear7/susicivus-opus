@@ -27,7 +27,7 @@ class If
   def execute variables, prog
     if cond.value variables
       @stmt_seq1.execute variables, prog
-    else
+    elsif @stmt_seq2
       @stmt_seq2.execute variables, prog
     end
   end

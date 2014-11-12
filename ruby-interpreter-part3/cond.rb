@@ -13,6 +13,7 @@ class Cond
   def initialize tokens
     if tokens.current_token_string == "!"
       @false = true
+      tokens.skip "!"
       @cond = Cond.new(tokens)
     elsif tokens.current_token_string == "["
       @false = false
@@ -21,9 +22,11 @@ class Cond
       if    tokens.current_token_string == "&&"
         @or  = false
         @and = true
+        tokens.skip "&&"
       elsif tokens.current_token_string == "||"
         @or  = true
         @and = false
+        tokens.skip "||"
       end
       @cond2 = Cond.new(tokens)
       tokens.skip "]"
@@ -48,15 +51,15 @@ class Cond
 
   def print_out
     if @false
-      print "!"
+      print " !"
       @cond.print_out
     elsif @cond2
-      print " [ "
+      print " ["
       @cond1.print_out
-      print " && " if @and
-      print " || " if @or
+      print "&&" if @and
+      print "||" if @or
       @cond2.print_out
-      print " ] "
+      print "] "
     else
       @comp.print_out
     end
